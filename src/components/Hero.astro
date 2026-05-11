@@ -1,0 +1,103 @@
+---
+import ContentWidth from "./ContentWidth.astro";
+---
+
+<section class="relative w-full min-h-[90vh] flex items-center bg-secondary-950 py-16 overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, var(--color-secondary-800) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <ContentWidth>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+
+      <div class="space-y-10">
+        <div class="space-y-6">
+          <span class="text-primary-500 font-bold tracking-[0.2em] text-xs uppercase">
+            Inversión Segura
+          </span>
+          <h1 class="text-5xl md:text-7xl text-white leading-[1.1]">
+            Encuentra tu propiedad <br />
+            <span class="text-primary-500 italic">ideal</span> en las mejores zonas
+          </h1>
+          <p class="text-secondary-400 text-lg max-w-xl leading-relaxed">
+            Conectamos a personas con los mejores espacios para vivir, trabajar y crecer. Terrenos con alta plusvalía y proyectos exclusivos en Lima y provincias.
+          </p>
+        </div>
+
+        <div class="flex gap-12 items-center pt-4">
+          <div class="flex items-center gap-4">
+            <span class="text-4xl font-bold text-primary-500">2600+</span>
+            <span class="text-secondary-400 text-[10px] uppercase tracking-widest leading-tight">
+              familias <br/> atendidas
+            </span>
+          </div>
+          <div class="w-px h-10 bg-secondary-800"></div>
+          <div class="flex items-center gap-4">
+            <span class="text-4xl font-bold text-primary-500">+5</span>
+            <span class="text-secondary-400 text-[10px] uppercase tracking-widest leading-tight">
+              años de <br/> experiencia
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center lg:justify-end">
+        <div class="bg-white p-10 rounded-sm shadow-2xl w-full max-w-md">
+          <p class="text-secondary-900 text-center mb-8 text-sm italic">
+            Reserva tu asesoría gratuita
+          </p>
+
+          <form class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-secondary-900 mb-2">Nombre Completo</label>
+              <input
+                  type="text"
+                  placeholder="Tu nombre"
+                  class="w-full px-4 py-3 bg-secondary-50 border border-secondary-100 rounded-sm text-secondary-900 focus:outline-none focus:border-primary-500 placeholder:text-secondary-400 transition-colors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-secondary-900 mb-2">WhatsApp</label>
+              <input
+                  type="tel"
+                  placeholder="+51 900 000 000"
+                  class="w-full px-4 py-3 bg-secondary-50 border border-secondary-100 rounded-sm text-secondary-900 focus:outline-none focus:border-primary-500 placeholder:text-secondary-400 transition-colors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-secondary-900 mb-2">Interés</label>
+              <div class="relative">
+                <select class="w-full px-4 py-3 bg-secondary-50 border border-secondary-100 rounded-sm text-secondary-400 focus:outline-none focus:border-primary-500 appearance-none cursor-pointer">
+                  <option>Venta de Terreno</option>
+                  <option>Inversión Inmobiliaria</option>
+                  <option>Desarrollo de Proyectos</option>
+                </select>
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary-400"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-primary-800 hover:bg-primary-700 text-white text-sm py-4 rounded-sm transition-all transform active:scale-[0.98] shadow-md mt-4"
+            >
+              Quiero recibir información
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </ContentWidth>
+</section>
+
+<style>
+  h1, h3, p, label, button {
+    letter-spacing: -0.01em;
+  }
+
+  select {
+    background-image: none;
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+import ContentWidth from "./ContentWidth.astro";
+---
+
+<header
+    id="header"
+    class="w-full fixed top-0 left-0 z-50 transition-all duration-300 border-b border-transparent bg-secondary-950"
+>
+  <ContentWidth>
+    <div class="flex justify-between items-center h-16 md:h-20">
+
+      <div class="flex items-center gap-12">
+        <a href="/" class="shrink-0 transition-transform hover:scale-105">
+          <span class="text-primary-500 text-2xl font-bold tracking-tight">
+            Dominick Pro
+          </span>
+        </a>
+
+        <nav class="hidden md:block">
+          <ul class="flex gap-8 text-sm font-medium">
+            <li>
+              <a href="/" class="text-primary-500 nav-link active">Inicio</a>
+            </li>
+            <li>
+              <a href="#nosotros" class="text-white hover:text-primary-400 transition-colors nav-link">Nosotros</a>
+            </li>
+            <li>
+              <a href="#servicios" class="text-white hover:text-primary-400 transition-colors nav-link">Servicios</a>
+            </li>
+            <li>
+              <a href="#contacto" class="text-white hover:text-primary-400 transition-colors nav-link">Contacto</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="flex items-center">
+        <a
+            href="#consultar"
+            class="px-6 py-2.5 bg-primary-700 hover:bg-primary-600 text-secondary-950 font-bold text-sm transition-all active:scale-95 rounded-sm"
+        >
+          Consultar Ahora
+        </a>
+      </div>
+
+    </div>
+  </ContentWidth>
+</header>
+
+<script>
+  const header = document.querySelector('#header') as HTMLElement;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.classList.add('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
+      header.classList.remove('border-transparent');
+    } else {
+      header.classList.remove('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
+      header.classList.add('border-transparent');
+    }
+  });
+</script>
+
+<style>
+  .nav-link {
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary-500);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  a span {
+    font-family: 'Times New Roman', Times, serif;
+  }
+</style>
