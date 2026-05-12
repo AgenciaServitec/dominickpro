@@ -2,9 +2,9 @@
 import ContentWidth from "../components/ContentWidth.astro";
 ---
 
-<section class="w-full bg-secondary-950 py-16">
+<section class="w-full py-16 bg-secondary-50 transition-all transform hover:scale-[1.05] active:scale-[0.95] animate-soft-pulse">
     <ContentWidth>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-secondary-900/50 p-6 md:p-10 rounded-sm border border-secondary-800">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-secondary-950 p-6 md:p-10 rounded-lg border border-secondary-800">
 
             <div class="relative group overflow-hidden rounded-sm aspect-video lg:aspect-square xl:aspect-video">
                 <img
@@ -12,44 +12,42 @@ import ContentWidth from "../components/ContentWidth.astro";
                         alt="Vista del terreno en oferta"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-secondary-950/60 to-transparent"></div>
+                <div class="absolute inset-0 bg-linear-to-t from-secondary-950/60 to-transparent"></div>
             </div>
 
             <div class="space-y-6">
                 <div>
-          <span class="inline-block bg-primary-800/20 text-primary-500 border border-primary-800/30 px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold mb-4">
+          <span class="inline-block bg-primary-800/20 text-primary-500 border border-primary-800/30 px-3 py-1 text-sm uppercase font-bold mb-4 rounded-md">
             Oferta Exclusiva
           </span>
-                    <h2 class="text-3xl md:text-4xl text-white uppercase leading-tight">
-                        ¡Oferta Relámpago de la <br class="hidden md:block"/> semana!
-                    </h2>
-                    <p class="text-secondary-400 text-sm md:text-base mt-4">
+                    <h2 class="text-3xl md:text-4xl font-semibold uppercase">¡Oferta Relámpago de la <br class="hidden md:block"/> semana!</h2>
+                    <p class="text-sm md:text-base mt-4">
                         Adquiere tu terreno a un precio de locura. Solo por tiempo limitado.
                     </p>
                 </div>
 
-                <div class="flex flex-wrap items-center gap-4 md:gap-6">
+                <div class="flex flex-wrap items-start gap-4 md:gap-6">
                     <div class="flex gap-3">
                         <div class="flex flex-col items-center">
-                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-sm flex items-center justify-center border border-secondary-700">
+                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-md flex items-center justify-center border border-secondary-700">
                                 <span class="text-primary-500 text-2xl font-bold">02</span>
                             </div>
                             <span class="text-[10px] text-secondary-500 uppercase mt-2 tracking-widest">Días</span>
                         </div>
                         <div class="flex flex-col items-center">
-                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-sm flex items-center justify-center border border-secondary-700">
+                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-md flex items-center justify-center border border-secondary-700">
                                 <span class="text-primary-500 text-2xl font-bold">23</span>
                             </div>
                             <span class="text-[10px] text-secondary-500 uppercase mt-2 tracking-widest">Horas</span>
                         </div>
                         <div class="flex flex-col items-center">
-                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-sm flex items-center justify-center border border-secondary-700">
+                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-md flex items-center justify-center border border-secondary-700">
                                 <span class="text-primary-500 text-2xl font-bold">37</span>
                             </div>
                             <span class="text-[10px] text-secondary-500 uppercase mt-2 tracking-widest">Min</span>
                         </div>
                         <div class="flex flex-col items-center">
-                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-sm flex items-center justify-center border border-secondary-700">
+                            <div class="w-14 h-14 md:w-16 md:h-16 bg-secondary-800 rounded-md flex items-center justify-center border border-secondary-700">
                                 <span class="text-primary-500 text-2xl font-bold">56</span>
                             </div>
                             <span class="text-[10px] text-secondary-500 uppercase mt-2 tracking-widest">Seg</span>
@@ -57,8 +55,8 @@ import ContentWidth from "../components/ContentWidth.astro";
                     </div>
 
                     <a
-                            href="#contacto"
-                            class="flex-1 md:flex-none flex items-center justify-center gap-3 bg-primary-800 hover:bg-primary-700 text-secondary-950 font-bold py-4 px-8 rounded-sm transition-all group"
+                            href="/#contact"
+                            class="flex-1 md:flex-none flex items-center justify-center gap-3 bg-primary-500 hover:bg-primary-400 text-secondary-950 font-bold py-4 px-8 rounded-md transition-all group"
                     >
                         <span>Contactar Ahora</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>

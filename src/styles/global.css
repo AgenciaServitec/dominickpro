@@ -3,25 +3,31 @@
 @theme {
     --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
-    --color-primary-50: #fdfae7;
-    --color-primary-100: #f9f1c1;
-    --color-primary-200: #f4e386;
-    --color-primary-300: #eed04b;
-    --color-primary-400: #e8bd24;
-    --color-primary-500: #d4a017;
-    --color-primary-600: #b17d12;
-    --color-primary-700: #8d5c10;
-    --color-primary-800: #744b12;
-    --color-primary-900: #634015;
-    --color-primary-950: #392108;
+    /* Primario: Basado en el logo #eaa44e y el vibrante #ffbb00 */
+    --color-primary-50: #fffbeb;
+    --color-primary-100: #fef3c7;
+    --color-primary-200: #fde68a;
+    --color-primary-300: #fcd34d;
+    --color-primary-400: #fbbf24;
+    --color-primary-500: #ffbb00; /* Color vibrante propuesto */
+    --color-primary-600: #eaa44e; /* Color exacto del Logo */
+    --color-primary-700: #b4712a;
+    --color-primary-800: #925826;
+    --color-primary-900: #784a23;
+    --color-primary-950: #45260f;
 
-    --color-secondary-50: #f4f6f8;
-    --color-secondary-100: #e9ecef;
-    --color-secondary-400: #93a2b7;
-    --color-secondary-700: #2c3e50;
-    --color-secondary-800: #1a2a3a;
-    --color-secondary-900: #0a1929;
-    --color-secondary-950: #050c16;
+    /* Secundario: Basado en los azules oscuros #0d3153 y #0a2342 */
+    --color-secondary-50: #f0f4f8;
+    --color-secondary-100: #d9e2ec;
+    --color-secondary-200: #bcccdc;
+    --color-secondary-300: #9fb3c8;
+    --color-secondary-400: #829ab1;
+    --color-secondary-500: #627d98;
+    --color-secondary-600: #486581;
+    --color-secondary-700: #334e68;
+    --color-secondary-800: #0d3153; /* Azul profundo propuesto */
+    --color-secondary-900: #0a2342; /* Azul marino propuesto */
+    --color-secondary-950: #051221; /* El "casi negro" para fondos Dark Tech */
 
     --color-success: #22c55e;
     --color-success-content: #052e16;
@@ -32,15 +38,35 @@
     --color-error: #dc2626;
     --color-error-content: #450a0a;
 
-    --color-info: #1d4ed8;
-    --color-info-content: #1e3a8a;
+    --color-info: #0d3153;
+    --color-info-content: #ffffff;
 
     --color-surface: var(--color-secondary-950);
     --color-on-surface: #ffffff;
 
     --radius-brand: 0.375rem;
+
+    @keyframes soft-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+    }
+
+    --animate-soft-pulse: soft-pulse .5s ease-in-out infinite;
+
+    @keyframes video-fade {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 0.6; }
+    }
+    --animate-video-loop: video-fade 8s ease-in-out infinite;
+
+    @keyframes scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(calc(-100% - 2rem)); }
+    }
+
+    --animate-infinite-scroll: scroll 40s linear infinite;
 }
 
 .bg-logo-gradient {
-    background: linear-gradient(135deg, #d4a017 0%, #8d5c10 100%);
+    background: linear-gradient(135deg, #ffbb00 0%, #eaa44e 100%);
 }

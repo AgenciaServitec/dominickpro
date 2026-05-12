@@ -12,6 +12,7 @@
     "@fontsource-variable/geist": "^5.2.8",
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^5.7.4",
+    "phosphor-astro": "^2.1.0",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

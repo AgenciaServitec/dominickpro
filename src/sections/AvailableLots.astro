@@ -1,0 +1,160 @@
+---
+import ContentWidth from "../components/ContentWidth.astro";
+import Check from "phosphor-astro/Check.astro";
+
+const projects = [
+    {
+        name: "Praderas del Sol",
+        location: "HUARAL - a 25 minutos del mega puerto de Chancay.",
+        price: "$35,000",
+        m2Price: "Desde $65/m2",
+        area: "5,000 m²",
+        image: "/projects/praderas.jpg",
+        features: ["Agua", "Luz", "Acceso", "Seguridad"]
+    },
+    {
+        name: "Rio de Oro",
+        location: "Huaral - 2hrs de Lima",
+        price: "$12,000",
+        m2Price: "$50/m2",
+        area: "3,000 m²",
+        image: "/projects/rio-oro.jpg",
+        features: ["Agua", "Luz", "Acceso", "Seguridad"]
+    },
+    {
+        name: "El Amanecer",
+        location: "Huaral - 2hrs de Lima",
+        price: "$15,000",
+        m2Price: "$45/m2",
+        area: "5,000 m²",
+        image: "/projects/amanecer.jpg",
+        features: ["Agua", "Luz", "Acceso", "Seguridad"]
+    }
+];
+
+const infiniteProjects = [...projects, ...projects];
+---
+
+<section class="w-full py-24 bg-white">
+    <ContentWidth>
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 class="text-secondary-950 text-sm font-semibold uppercase">
+                Lotes <span class="text-primary-600">Disponibles</span>
+            </h2>
+            <p class="text-secondary-950 text-2xl md:text-3xl font-semibold">
+                Descubre nuestras mejores opciones de <br class="hidden md:block" /> inversión en distintas regiones del país
+            </p>
+        </div>
+
+        <div class="relative w-full overflow-hidden">
+            <div id="lot-carousel" class="flex gap-8 transition-transform duration-700 ease-in-out cursor-grab active:cursor-grabbing">
+                {infiniteProjects.map((project) => (
+                        <div class="lot-card min-w-[300px] md:min-w-[380px] bg-white rounded-2xl border border-secondary-100 shadow-sm overflow-hidden flex flex-col transition-all hover:border-primary-500/30">
+                            <div class="relative h-52">
+                                <img src={project.image} alt={project.name} class="w-full h-full object-cover" />
+                                <div class="absolute inset-0 bg-secondary-900/20"></div>
+                                <span class="absolute bottom-4 left-4 bg-white text-secondary-900 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
+                                    {project.area}
+                                </span>
+                            </div>
+
+                            <div class="p-8 space-y-6 flex-1">
+                                <div class="space-y-2">
+                                    <h3 class="text-secondary-900 font-bold text-xl leading-tight">{project.name}</h3>
+                                    <p class="text-secondary-400 text-xs leading-snug h-10">{project.location}</p>
+                                </div>
+
+                                <div class="flex items-end justify-between border-b border-secondary-50 pb-4">
+                                    <div class="space-y-1">
+                                        <p class="text-primary-600 text-2xl font-bold">{project.price}</p>
+                                    </div>
+                                    <p class="text-secondary-300 text-[10px] font-medium uppercase tracking-tighter">{project.m2Price}</p>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-y-3">
+                                    {project.features.map((feature) => (
+                                            <div class="flex items-center gap-2 text-secondary-500 text-xs font-medium">
+                                                <Check class="w-4 h-4 text-primary-500" />
+                                                {feature}
+                                            </div>
+                                    ))}
+                                </div>
+
+                                <button class="w-full bg-primary-500 hover:bg-primary-400 text-secondary-950 font-bold text-xs py-4 rounded-md transition-all transform active:scale-[0.98] shadow-md mt-4 uppercase tracking-wider">
+                                    Más información
+                                </button>
+                            </div>
+                        </div>
+                ))}
+            </div>
+        </div>
+    </ContentWidth>
+</section>
+
+<script>
+    const setupCarousel = () => {
+        const carousel = document.getElementById('lot-carousel');
+        if (!carousel) return;
+
+        const cards = carousel.querySelectorAll('.lot-card');
+        const totalCards = cards.length / 2;
+        let currentIndex = 0;
+        const scrollInterval = 5000;
+
+        const moveCarousel = () => {
+            currentIndex++;
+
+            const cardWidth = cards[0].offsetWidth;
+            const gap = 32;
+            const offset = (cardWidth + gap) * currentIndex;
+
+            carousel.style.transform = `translateX(-${offset}px)`;
+
+            if (currentIndex >= totalCards) {
+                setTimeout(() => {
+                    carousel.style.transition = 'none';
+                    currentIndex = 0;
+                    carousel.style.transform = `translateX(0)`;
+                    carousel.offsetHeight;
+                    carousel.style.transition = 'transform 700s ease-in-out';
+                }, 700);
+            }
+        };
+
+        let interval = setInterval(moveCarousel, scrollInterval);
+
+        carousel.addEventListener('mouseenter', () => clearInterval(interval));
+        carousel.addEventListener('mouseleave', () => interval = setInterval(moveCarousel, scrollInterval));
+    };
+
+    setupCarousel();
+</script>
+
+<style>
+    #lot-carousel {
+        width: max-content;
+        will-change: transform;
+        transition: transform 0.7s ease-in-out;
+    }
+
+    .relative.overflow-hidden::before,
+    .relative.overflow-hidden::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 60px;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .relative.overflow-hidden::before {
+        left: 0;
+        background: linear-gradient(to right, white, transparent);
+    }
+
+    .relative.overflow-hidden::after {
+        right: 0;
+        background: linear-gradient(to left, white, transparent);
+    }
+</style>

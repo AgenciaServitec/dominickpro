@@ -15,23 +15,46 @@ export interface Props {
   twitterSite?: string;
   robots?: string;
   canonical?: string;
+  gtmId?: string;
 }
 
 const {
-  title = "Servitec Work",
-  description = "Servitec Work: app de servicio técnico. Clientes solicitan reparaciones. Técnicos eligen trabajos y pagan S/ 5.00 por solicitud aceptada, previa recarga de saldo.",
-  image = "/og-default.jpg",
+  title = "Dominick Pro Inmobiliaria | Lotes en Huaral y Alquileres en Lima",
+  description = "Invierta en lotes en Huaral a 25 min del Megapuerto de Chancay. Seguridad jurídica 100% con títulos inscritos en SUNARP. +1600 lotes vendidos.",
+  image = "/images/og-dominick-pro.jpg",
   url = Astro.url.href,
   type = "website",
-  siteName = "Servitec Work",
+  siteName = "Dominick Pro Inmobiliaria",
   twitterCard = "summary_large_image",
-  twitterSite = "@servitec_work",
+  twitterSite = "@DominickPro",
   robots = "index, follow",
-  canonical = Astro.url.href,
+  canonical,
+  gtmId = "GTM-XXXXXXX",
 } = Astro.props;
 
-const absoluteImage = new URL(image, Astro.site ?? Astro.url.origin).href;
-const absoluteCanonical = new URL(canonical, Astro.url.origin).href;
+// Gestión de dominio no definido:
+// Si no hay dominio en astro.config.mjs, usamos una ruta relativa para evitar errores de compilación
+const siteUrl = Astro.site? new URL(url, Astro.site).href : url;
+const absoluteImage = Astro.site? new URL(image, Astro.site).href : image;
+const absoluteCanonical = canonical || siteUrl;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": siteName,
+  "image": absoluteImage,
+  "telephone": "+51 908 942 105",
+  "url": siteUrl,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Juan del Carpio 195",
+    "addressLocality": "San Isidro",
+    "addressRegion": "Lima",
+    "addressCountry": "PE"
+  },
+  "priceRange": "$12,000 - $35,000",
+  "areaServed": ["Huaral", "Chancay", "Lima", "Carabayllo"]
+};
 ---
 
 <!doctype html>
@@ -46,63 +69,58 @@ const absoluteCanonical = new URL(canonical, Astro.url.origin).href;
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="robots" content={robots} />
-  <meta name="author" content="Servitec Work" />
   <link rel="canonical" href={absoluteCanonical} />
 
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={absoluteImage} />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:url" content={url} />
   <meta property="og:type" content={type} />
   <meta property="og:site_name" content={siteName} />
-  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale" content="es_PE" />
 
   <meta name="twitter:card" content={twitterCard} />
   <meta name="twitter:site" content={twitterSite} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={absoluteImage} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
 </head>
-<body class="antialiased scroll-smooth">
+<body class="antialiased scroll-smooth relative text-white min-h-screen flex flex-col overflow-x-hidden">
 <Header />
-<main class="min-h-screen">
+
+<main class="flex-1">
   <slot />
 </main>
+
 <Footer />
 </body>
 </html>
 
 <style is:global>
   :root {
-    color-scheme: dark;
-  }
-
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
+    --primary-neon: #FFBF00;
+    --secondary-neon: #D4FF00;
   }
 
   body {
     margin-right: calc(100vw - 100%);
-    overflow-x: hidden;
   }
 
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
-
   ::-webkit-scrollbar-track {
-    background: var(--color-secondary-950);
+    background: #0a0a0a;
   }
-
   ::-webkit-scrollbar-thumb {
-    background: var(--color-secondary-800);
+    background: #262626;
     border-radius: 10px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary-500);
+    background: var(--primary-neon);
   }
 
   main {
@@ -110,7 +128,7 @@ const absoluteCanonical = new URL(canonical, Astro.url.origin).href;
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 </style>

@@ -1,0 +1,65 @@
+---
+import ContentWidth from "../components/ContentWidth.astro";
+import House from "phosphor-astro/House.astro";
+import ChartLineUp from "phosphor-astro/ChartLineUp.astro";
+import ShieldCheck from "phosphor-astro/ShieldCheck.astro";
+
+const services = [
+    {
+        title: "Venta de Terrenos",
+        description: "Lotes estratégicos en zonas de alta expansión como Huaral y Chancay, con entrega inmediata y seguridad jurídica garantizada.",
+        icon: House,
+        color: "text-blue-600",
+        bgColor: "bg-blue-50"
+    },
+    {
+        title: "Inversiones Inmobiliarias",
+        description: "Maximiza tu capital con proyectos diseñados para generar alta plusvalía a corto y mediano plazo en el mercado peruano.",
+        icon: ChartLineUp,
+        color: "text-emerald-600",
+        bgColor: "bg-emerald-50"
+    },
+    {
+        title: "Asesoría y Seguridad",
+        description: "Acompañamiento profesional en cada etapa, con títulos inscritos en SUNARP para asegurar tu patrimonio y tranquilidad.",
+        icon: ShieldCheck,
+        color: "text-amber-600",
+        bgColor: "bg-amber-50"
+    },
+];
+---
+
+<section class="w-full py-20 bg-secondary-50">
+    <ContentWidth>
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 class="text-secondary-950 text-sm font-semibold uppercase">
+                Nuestros <span class="text-primary-600">Servicios</span>
+            </h2>
+            <p class="text-secondary-950 text-2xl md:text-3xl font-semibold">
+                Soluciones integrales adaptadas a tus necesidades inmobiliarias y metas de inversión.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((service) => {
+                const Icon = service.icon;
+
+                return (
+                        <div class="bg-white p-4 rounded-lg border border-secondary-100 shadow-sm hover:shadow-md transition-all group">
+                            <div class={`w-14 h-14 ${service.bgColor} rounded-md flex items-center justify-center mb-8`}>
+                                <Icon class={`w-7 h-7 ${service.color}`} />
+                            </div>
+
+                            <h3 class="text-secondary-950 font-bold text-xl mb-4">
+                                {service.title}
+                            </h3>
+
+                            <p class="text-secondary-400 text-sm">
+                                {service.description}
+                            </p>
+                        </div>
+                )
+            })}
+        </div>
+    </ContentWidth>
+</section>

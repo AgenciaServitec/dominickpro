@@ -1,19 +1,19 @@
 ---
+import { Image } from 'astro:assets';
+
 import ContentWidth from "./ContentWidth.astro";
 ---
 
 <header
     id="header"
-    class="w-full fixed top-0 left-0 z-50 transition-all duration-300 border-b border-transparent bg-secondary-950"
+    class="w-full fixed top-0 left-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent"
 >
   <ContentWidth>
     <div class="flex justify-between items-center h-16 md:h-20">
 
       <div class="flex items-center gap-12">
         <a href="/" class="shrink-0 transition-transform hover:scale-105">
-          <span class="text-primary-500 text-2xl font-bold tracking-tight">
-            Dominick Pro
-          </span>
+          <Image src="/logo.png" alt="Logo de Dominick Pro Inmobiliaria" width="120" height="120" />
         </a>
 
         <nav class="hidden md:block">
@@ -22,13 +22,13 @@ import ContentWidth from "./ContentWidth.astro";
               <a href="/" class="text-primary-500 nav-link active">Inicio</a>
             </li>
             <li>
-              <a href="#nosotros" class="text-white hover:text-primary-400 transition-colors nav-link">Nosotros</a>
+              <a href="/#nosotros" class="text-white hover:text-primary-400 transition-colors nav-link">Nosotros</a>
             </li>
             <li>
-              <a href="#servicios" class="text-white hover:text-primary-400 transition-colors nav-link">Servicios</a>
+              <a href="/#servicios" class="text-white hover:text-primary-400 transition-colors nav-link">Servicios</a>
             </li>
             <li>
-              <a href="#contacto" class="text-white hover:text-primary-400 transition-colors nav-link">Contacto</a>
+              <a href="/#contacto" class="text-white hover:text-primary-400 transition-colors nav-link">Contacto</a>
             </li>
           </ul>
         </nav>
@@ -37,7 +37,7 @@ import ContentWidth from "./ContentWidth.astro";
       <div class="flex items-center">
         <a
             href="#consultar"
-            class="px-6 py-2.5 bg-primary-700 hover:bg-primary-600 text-secondary-950 font-bold text-sm transition-all active:scale-95 rounded-sm"
+            class="px-6 py-2.5 bg-primary-500 hover:bg-primary-400 text-secondary-950 font-bold text-sm rounded-md transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_20px_-10px_rgba(255,187,0,0.3)] mt-4 uppercase"
         >
           Consultar Ahora
         </a>

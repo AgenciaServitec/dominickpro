@@ -1,0 +1,112 @@
+---
+import ContentWidth from "../components/ContentWidth.astro";
+import MapPinFill from "phosphor-astro/MapPinFill.astro";
+import PhoneFill from "phosphor-astro/PhoneFill.astro";
+import EnvelopeFill from "phosphor-astro/EnvelopeFill.astro";
+import FacebookLogoFill from "phosphor-astro/FacebookLogoFill.astro";
+import InstagramLogoFill from "phosphor-astro/InstagramLogoFill.astro";
+import LinkedinLogoFill from "phosphor-astro/LinkedinLogoFill.astro";
+
+const contactInfo = {
+    title: "Hablemos de tu próximo proyecto",
+    description: "Estamos aquí para asesorarte en cada paso de tu inversión inmobiliaria.",
+    details: [
+        {
+            label: "Oficina Principal",
+            value: "Calle Juan del Carpio 195, San Isidro - Lima",
+            icon: MapPinFill
+        },
+        {
+            label: "Teléfono",
+            value: "+51 908 942 105",
+            icon: PhoneFill
+        },
+        {
+            label: "Correo",
+            value: "contactanos@dominickpro.com",
+            icon: EnvelopeFill
+        }
+    ],
+    socials: [
+        { Icon: FacebookLogoFill, href: "#" },
+        { Icon: InstagramLogoFill, href: "#" },
+        { Icon: LinkedinLogoFill, href: "#" }
+    ]
+};
+---
+
+<section class="w-full py-20">
+    <ContentWidth>
+        <div class="flex flex-col lg:flex-row overflow-hidden rounded-lg shadow-sm min-h-150">
+
+            <div class="lg:w-2/5 bg-secondary-950 p-10 md:p-16 flex flex-col justify-between">
+                <div class="space-y-12">
+                    <div class="space-y-4">
+                        <h2 class="text-white text-3xl md:text-4xl font-bold tracking-tight">
+                            {contactInfo.title}
+                        </h2>
+                        <p class="text-secondary-400 text-sm leading-relaxed max-w-xs">
+                            {contactInfo.description}
+                        </p>
+                    </div>
+
+                    <div class="space-y-8">
+                        {contactInfo.details.map((detail) => {
+                            const Icon = detail.icon;
+                            return (
+                                    <div class="flex gap-5 group">
+                                        <div class="w-12 h-12 bg-secondary-900 rounded-lg flex items-center justify-center shrink-0 border border-secondary-800 group-hover:border-primary-500/50 transition-colors">
+                                            <Icon class="w-6 h-6 text-primary-500" weight="bold" />
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-bold text-sm mb-1">{detail.label}</h4>
+                                            <p class="text-secondary-400 text-sm leading-snug">{detail.value}</p>
+                                        </div>
+                                    </div>
+                            )
+                        })}
+                    </div>
+                </div>
+
+                <div class="flex gap-3 pt-12">
+                    {contactInfo.socials.map((social) => (
+                            <a
+                                    href={social.href}
+                                    class="w-11 h-11 bg-secondary-900 rounded-lg flex items-center justify-center text-secondary-400 hover:bg-primary-500 hover:text-secondary-950 transition-all border border-secondary-800"
+                                    aria-label="Red Social"
+                            >
+                                <social.Icon class="w-6 h-6" />
+                            </a>
+                    ))}
+                </div>
+            </div>
+
+            <div class="lg:w-3/5 bg-secondary-100 relative min-h-100">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3530.3386645351397!2d-77.03066852493804!3d-12.10179078813929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8656c3d5a17%3A0xa57ff929b77383c2!2sDOMINICK%20PRO!5e1!3m2!1ses-419!2spe!4v1778615205560!5m2!1ses-419!2spe"
+                        class="absolute inset-0 w-full h-full grayscale-[0.2] contrast-[1.1]"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+                <a
+                        href="https://maps.google.com"
+                        target="_blank"
+                        class="absolute top-6 right-6 bg-white px-4 py-2 rounded shadow-md text-xs font-medium text-secondary-700 flex items-center gap-2 hover:bg-secondary-50 transition-colors"
+                >
+                    Abrir en Maps
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 22 3 22 10"/><line x1="10" y1="14" x2="22" y2="2"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </ContentWidth>
+</section>
+
+<style>
+    h2 {
+        letter-spacing: -0.03em;
+    }
+</style>

@@ -1,5 +1,6 @@
 ---
 import ContentWidth from "./ContentWidth.astro";
+import {Image} from "astro:assets";
 ---
 
 <footer class="bg-secondary-950 border-t border-secondary-900 pt-16 pb-8 relative">
@@ -7,9 +8,9 @@ import ContentWidth from "./ContentWidth.astro";
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
 
       <div class="md:col-span-4 flex flex-col items-center md:items-start">
-        <span class="text-primary-500 text-3xl font-bold tracking-tight">
-          Dominick Pro
-        </span>
+        <a href="/" class="shrink-0 transition-transform hover:scale-105">
+          <Image src="/logo.png" alt="Logo de Dominick Pro Inmobiliaria" width="120" height="120" />
+        </a>
         <div class="text-secondary-400 text-sm mt-4 text-center md:text-left space-y-1">
           <p>Expertos en Bienes</p>
           <p>Raíces</p>
@@ -29,8 +30,8 @@ import ContentWidth from "./ContentWidth.astro";
       </div>
 
       <div class="md:col-span-4 flex justify-center md:justify-end">
-        <p class="text-secondary-400 text-sm text-center md:text-right max-w-[280px] leading-relaxed">
-          © 2024 Dominick Pro Inmobiliaria. Todos los derechos reservados.
+        <p class="text-secondary-400 text-sm text-center md:text-right max-w-70 leading-relaxed">
+          &copy; 2026 Dominick Pro Inmobiliaria. Todos los derechos reservados.
         </p>
       </div>
 

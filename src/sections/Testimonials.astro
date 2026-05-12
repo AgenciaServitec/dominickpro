@@ -1,0 +1,71 @@
+---
+import StarFill from "phosphor-astro/StarFill.astro";
+
+import ContentWidth from "../components/ContentWidth.astro";
+
+const testimonials = [
+    {
+        name: "Favio Rivas",
+        role: "Propietario",
+        content: "Gracias a Dominick Pro logré vender mi terreno en tiempo récord y a un precio justo. La asesoría legal fue impecable.",
+        avatar: "/avatars/favio.jpg",
+    },
+    {
+        name: "Angela Torres",
+        role: "Inversionista",
+        content: "Invertí en un proyecto de lotización y la rentabilidad ha superado mis expectativas. Profesionales de primer nivel.",
+        avatar: "/avatars/angela.jpg",
+    },
+    {
+        name: "Wilmer Pardo",
+        role: "Comprador",
+        content: "Excelente trato y conocimiento del mercado. Me ayudaron a encontrar el departamento que siempre soñé.",
+        avatar: "/avatars/wilmer.jpg",
+    }
+];
+---
+
+<section class="w-full py-20 bg-secondary-50/30">
+    <ContentWidth>
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 class="text-secondary-950 text-sm font-semibold uppercase">
+                Clientes que <span class="text-primary-600">Confían</span>
+            </h2>
+            <p class="text-secondary-950 text-2xl md:text-3xl font-semibold">
+                La satisfacción de nuestros clientes <br class="hidden md:block" /> es nuestra mejor garantía.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((item) => (
+                    <div class="bg-white p-4 rounded-xl border border-secondary-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex gap-1 mb-6">
+                                {[...Array(5)].map(() => (
+                                        <StarFill class="w-5 h-5 text-primary-500" />
+                                ))}
+                            </div>
+
+                            <p class="text-secondary-700 mb-10 text-md">
+                                "{item.content}"
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-md overflow-hidden bg-secondary-900 shadow-inner shrink-0">
+                                <img
+                                        src={item.avatar}
+                                        alt={item.name}
+                                        class="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div>
+                                <h4 class="text-secondary-950 font-bold text-base mb-1">{item.name}</h4>
+                                <p class="text-secondary-400 text-[10px] font-semibold uppercase">{item.role}</p>
+                            </div>
+                        </div>
+                    </div>
+            ))}
+        </div>
+    </ContentWidth>
+</section>
