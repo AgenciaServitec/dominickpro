@@ -19,7 +19,7 @@ import ContentWidth from "./ContentWidth.astro";
         <nav class="hidden md:block">
           <ul class="flex gap-8 text-sm font-medium">
             <li>
-              <a href="/" class="text-primary-500 nav-link active">Inicio</a>
+              <a href="/#lotes-disponibles" class="text-white hover:text-primary-400 transition-colors nav-link">Lotes Disponibles</a>
             </li>
             <li>
               <a href="/#nosotros" class="text-white hover:text-primary-400 transition-colors nav-link">Nosotros</a>
@@ -28,13 +28,13 @@ import ContentWidth from "./ContentWidth.astro";
               <a href="/#servicios" class="text-white hover:text-primary-400 transition-colors nav-link">Servicios</a>
             </li>
             <li>
-              <a href="/#contacto" class="text-white hover:text-primary-400 transition-colors nav-link">Contacto</a>
+              <a href="/#ubicacion" class="text-white hover:text-primary-400 transition-colors nav-link">Ubicación</a>
             </li>
           </ul>
         </nav>
       </div>
 
-      <div class="flex items-center">
+      <div class="hidden lg:flex items-center">
         <a
             href="#consultar"
             class="px-6 py-2.5 bg-primary-500 hover:bg-primary-400 text-secondary-950 font-bold text-sm rounded-md transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_20px_-10px_rgba(255,187,0,0.3)] mt-4 uppercase"
@@ -53,10 +53,10 @@ import ContentWidth from "./ContentWidth.astro";
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
       header.classList.add('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
-      header.classList.remove('border-transparent');
+      header.classList.remove('border-transparent', 'bg-transparent');
     } else {
       header.classList.remove('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
-      header.classList.add('border-transparent');
+      header.classList.add('border-transparent', 'bg-transparent');
     }
   });
 </script>

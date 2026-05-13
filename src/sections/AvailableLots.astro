@@ -1,6 +1,9 @@
 ---
-import ContentWidth from "../components/ContentWidth.astro";
 import Check from "phosphor-astro/Check.astro";
+import CaretLeft from "phosphor-astro/CaretLeft.astro";
+import CaretRight from "phosphor-astro/CaretRight.astro";
+
+import ContentWidth from "../components/ContentWidth.astro";
 
 const projects = [
     {
@@ -9,7 +12,7 @@ const projects = [
         price: "$35,000",
         m2Price: "Desde $65/m2",
         area: "5,000 m²",
-        image: "/projects/praderas.jpg",
+        image: "/praderas.png",
         features: ["Agua", "Luz", "Acceso", "Seguridad"]
     },
     {
@@ -18,16 +21,16 @@ const projects = [
         price: "$12,000",
         m2Price: "$50/m2",
         area: "3,000 m²",
-        image: "/projects/rio-oro.jpg",
+        image: "/rio-de-oro.png",
         features: ["Agua", "Luz", "Acceso", "Seguridad"]
     },
     {
         name: "El Amanecer",
         location: "Huaral - 2hrs de Lima",
         price: "$15,000",
-        m2Price: "$45/m2",
+        m2Price: "",
         area: "5,000 m²",
-        image: "/projects/amanecer.jpg",
+        image: "/amanecer.png",
         features: ["Agua", "Luz", "Acceso", "Seguridad"]
     }
 ];
@@ -46,46 +49,61 @@ const infiniteProjects = [...projects, ...projects];
             </p>
         </div>
 
-        <div class="relative w-full overflow-hidden">
-            <div id="lot-carousel" class="flex gap-8 transition-transform duration-700 ease-in-out cursor-grab active:cursor-grabbing">
-                {infiniteProjects.map((project) => (
-                        <div class="lot-card min-w-[300px] md:min-w-[380px] bg-white rounded-2xl border border-secondary-100 shadow-sm overflow-hidden flex flex-col transition-all hover:border-primary-500/30">
-                            <div class="relative h-52">
-                                <img src={project.image} alt={project.name} class="w-full h-full object-cover" />
-                                <div class="absolute inset-0 bg-secondary-900/20"></div>
-                                <span class="absolute bottom-4 left-4 bg-white text-secondary-900 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
+        <div class="relative w-full">
+
+            <button id="prev-btn" class="absolute -left-4 top-1/2 -translate-y-1/2 z-20 bg-white p-2 rounded-full shadow-lg border border-secondary-100 text-secondary-900 hover:text-primary-600 transition-colors hidden md:block cursor-pointer">
+                <CaretLeft class="w-6 h-6" />
+            </button>
+
+            <button id="next-btn" class="absolute -right-4 top-1/2 -translate-y-1/2 z-20 bg-white p-2 rounded-full shadow-lg border border-secondary-100 text-secondary-900 hover:text-primary-600 transition-colors hidden md:block cursor-pointer">
+                <CaretRight class="w-6 h-6" />
+            </button>
+
+            <div class="overflow-hidden touch-pan-y">
+                <div id="lot-carousel" class="flex gap-8 cursor-grab active:cursor-grabbing select-none">
+                    {infiniteProjects.map((project) => (
+                            <div class="lot-card min-w-70 md:min-w-95 bg-white rounded-lg border border-secondary-100 shadow-sm overflow-hidden flex flex-col">
+                                <div class="relative h-52">
+                                    <img src={project.image} alt={project.name} class="w-full h-full object-cover" />
+                                    <div class="absolute inset-0 bg-secondary-900/20"></div>
+                                    <span class="absolute bottom-4 left-4 bg-white text-secondary-900 text-sm font-bold px-3 py-1.5 rounded-md shadow-sm uppercase">
                                     {project.area}
                                 </span>
-                            </div>
-
-                            <div class="p-8 space-y-6 flex-1">
-                                <div class="space-y-2">
-                                    <h3 class="text-secondary-900 font-bold text-xl leading-tight">{project.name}</h3>
-                                    <p class="text-secondary-400 text-xs leading-snug h-10">{project.location}</p>
                                 </div>
 
-                                <div class="flex items-end justify-between border-b border-secondary-50 pb-4">
-                                    <div class="space-y-1">
-                                        <p class="text-primary-600 text-2xl font-bold">{project.price}</p>
+                                <div class="p-4 space-y-6 flex-1">
+                                    <div class="space-y-2">
+                                        <h3 class="text-secondary-900 font-bold text-xl">{project.name}</h3>
+                                        <p class="text-secondary-400 text-xs">{project.location}</p>
                                     </div>
-                                    <p class="text-secondary-300 text-[10px] font-medium uppercase tracking-tighter">{project.m2Price}</p>
-                                </div>
 
-                                <div class="grid grid-cols-2 gap-y-3">
-                                    {project.features.map((feature) => (
-                                            <div class="flex items-center gap-2 text-secondary-500 text-xs font-medium">
-                                                <Check class="w-4 h-4 text-primary-500" />
-                                                {feature}
-                                            </div>
-                                    ))}
-                                </div>
+                                    <div class="flex items-end justify-between">
+                                        <div class="space-y-1">
+                                            <p class="text-secondary-300">Desde </p>
+                                            <p class="text-primary-600 text-2xl font-bold">{project.price}</p>
+                                        </div>
+                                        <p class="text-secondary-300 text-xs font-medium uppercase">{project.m2Price}</p>
+                                    </div>
 
-                                <button class="w-full bg-primary-500 hover:bg-primary-400 text-secondary-950 font-bold text-xs py-4 rounded-md transition-all transform active:scale-[0.98] shadow-md mt-4 uppercase tracking-wider">
-                                    Más información
-                                </button>
+                                    <div class="grid grid-cols-2 gap-y-3">
+                                        {project.features.map((feature) => (
+                                                <div class="flex items-center gap-2 text-secondary-500 text-xs font-medium">
+                                                    <Check class="w-4 h-4 text-primary-500" />
+                                                    {feature}
+                                                </div>
+                                        ))}
+                                    </div>
+
+                                    <a
+                                            href="#"
+                                            class="inline-block w-full bg-primary-500 hover:bg-primary-400 text-secondary-950 font-bold text-sm py-4 rounded-md text-center transition-all duration-150 transform active:scale-[0.95] active:shadow-inner shadow-[0_10px_20px_-10px_rgba(255,187,0,0.4)] uppercase cursor-pointer select-none"
+                                    >
+                                        Más información
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     </ContentWidth>
@@ -94,37 +112,117 @@ const infiniteProjects = [...projects, ...projects];
 <script>
     const setupCarousel = () => {
         const carousel = document.getElementById('lot-carousel');
-        if (!carousel) return;
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        if (!carousel || !prevBtn || !nextBtn) return;
 
         const cards = carousel.querySelectorAll('.lot-card');
-        const totalCards = cards.length / 2;
+        const totalOriginalCards = cards.length / 2;
         let currentIndex = 0;
-        const scrollInterval = 5000;
+        let isTransitioning = false;
 
-        const moveCarousel = () => {
-            currentIndex++;
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
 
+        const updateCarousel = (smooth = true, customOffset = null) => {
             const cardWidth = cards[0].offsetWidth;
             const gap = 32;
-            const offset = (cardWidth + gap) * currentIndex;
 
-            carousel.style.transform = `translateX(-${offset}px)`;
+            const offset = customOffset !== null ? customOffset : (cardWidth + gap) * currentIndex;
 
-            if (currentIndex >= totalCards) {
-                setTimeout(() => {
-                    carousel.style.transition = 'none';
-                    currentIndex = 0;
-                    carousel.style.transform = `translateX(0)`;
-                    carousel.offsetHeight;
-                    carousel.style.transition = 'transform 700s ease-in-out';
-                }, 700);
+            carousel.style.transition = smooth ? 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
+            carousel.style.transform = `translateX(${-offset}px)`;
+
+            if (customOffset === null) {
+                prevTranslate = offset;
             }
         };
 
-        let interval = setInterval(moveCarousel, scrollInterval);
+        const nextSlide = () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentIndex++;
+            updateCarousel();
 
-        carousel.addEventListener('mouseenter', () => clearInterval(interval));
-        carousel.addEventListener('mouseleave', () => interval = setInterval(moveCarousel, scrollInterval));
+            if (currentIndex >= totalOriginalCards) {
+                setTimeout(() => {
+                    currentIndex = 0;
+                    updateCarousel(false);
+                    isTransitioning = false;
+                }, 800);
+            } else {
+                setTimeout(() => isTransitioning = false, 800);
+            }
+        };
+
+        const prevSlide = () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            if (currentIndex <= 0) {
+                currentIndex = totalOriginalCards;
+                updateCarousel(false);
+                setTimeout(() => {
+                    currentIndex--;
+                    updateCarousel(true);
+                    setTimeout(() => isTransitioning = false, 800);
+                }, 10);
+            } else {
+                currentIndex--;
+                updateCarousel();
+                setTimeout(() => isTransitioning = false, 800);
+            }
+        };
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            stopAutoPlay();
+            carousel.style.transition = 'none';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX;
+            const walk = (startX - x) * 1.5;
+            currentTranslate = prevTranslate + walk;
+            updateCarousel(false, currentTranslate);
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const x = e.pageX;
+            const diff = startX - x;
+
+            if (Math.abs(diff) > 100) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            } else {
+                updateCarousel(true);
+            }
+            startAutoPlay();
+        });
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        let autoPlay = setInterval(nextSlide, 5000);
+        function stopAutoPlay() { clearInterval(autoPlay); }
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoPlay = setInterval(nextSlide, 5000);
+        }
+
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', () => {
+            if (!isDragging) startAutoPlay();
+        });
+
+        window.addEventListener('resize', () => updateCarousel(false));
     };
 
     setupCarousel();
@@ -134,27 +232,17 @@ const infiniteProjects = [...projects, ...projects];
     #lot-carousel {
         width: max-content;
         will-change: transform;
-        transition: transform 0.7s ease-in-out;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .relative.overflow-hidden::before,
-    .relative.overflow-hidden::after {
+    .overflow-hidden::before,
+    .overflow-hidden::after {
         content: "";
         position: absolute;
         top: 0;
-        width: 60px;
+        width: 100px;
         height: 100%;
         z-index: 10;
         pointer-events: none;
-    }
-
-    .relative.overflow-hidden::before {
-        left: 0;
-        background: linear-gradient(to right, white, transparent);
-    }
-
-    .relative.overflow-hidden::after {
-        right: 0;
-        background: linear-gradient(to left, white, transparent);
     }
 </style>
