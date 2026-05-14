@@ -1,0 +1,99 @@
+---
+import WhatsappLogo from "phosphor-astro/WhatsappLogo.astro";
+
+const phoneNumber = "51986342948";
+const initialMessage = "Hola, me interesa obtener información sobre los lotes disponibles.";
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(initialMessage)}`;
+
+const randomMessages = [
+    "¿Aún quedan lotes con vista al parque?",
+    "Me gustaría agendar una visita guiada para este sábado.",
+    "¿Cuál es el precio por m² en la zona norte?",
+    "¿Tienen planes de financiamiento directo?",
+    "Un usuario acaba de consultar por el lote Mz. B Lote 4",
+];
+---
+
+<div class="fixed bottom-6 right-6 z-60 flex flex-col items-end gap-3 pointer-events-none">
+    <div
+            id="wa-bubble"
+            class="opacity-0 translate-y-4 transition-all duration-500 bg-white text-secondary-950 px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-gray-100 min-w-20 max-w-62.5 pointer-events-auto relative"
+    >
+        <div id="wa-typing" class="flex gap-1 items-center h-4">
+            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
+            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+        </div>
+
+        <p id="wa-text" class="hidden text-xs font-medium leading-tight">
+            {randomMessages[0]}
+        </p>
+
+        <div class="absolute -bottom-2 -right-px w-0 h-0 border-l-12 border-l-transparent border-t-12 border-t-white drop-shadow-[1px_1px_0px_rgba(0,0,0,0.05)]"></div>
+    </div>
+
+    <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="pointer-events-auto group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full shadow-[0_10px_20px_-5px_rgba(37,211,102,0.5)] transition-all hover:scale-110 active:scale-95"
+            aria-label="Contactar por WhatsApp"
+    >
+        <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20"></span>
+        <WhatsappLogo class="w-10 h-10 relative z-10" />
+        <span class="absolute -top-1 -left-1 w-5 h-5 bg-red-500 text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white font-bold">1</span>
+    </a>
+</div>
+
+<script define:vars={{ randomMessages }}>
+    const bubble = document.getElementById('wa-bubble');
+    const textElement = document.getElementById('wa-text');
+    const typingElement = document.getElementById('wa-typing');
+
+    function showNewMessage() {
+        bubble.classList.remove('opacity-100', 'translate-y-0');
+        bubble.classList.add('opacity-0', 'translate-y-4');
+
+        setTimeout(() => {
+            typingElement.classList.remove('hidden');
+            typingElement.classList.add('flex');
+            textElement.classList.add('hidden');
+
+            bubble.classList.remove('opacity-0', 'translate-y-4');
+            bubble.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * randomMessages.length);
+                textElement.textContent = randomMessages[randomIndex];
+
+                typingElement.classList.add('hidden');
+                typingElement.classList.remove('flex');
+                textElement.classList.remove('hidden');
+            }, 2000);
+
+        }, 600);
+    }
+
+    setTimeout(showNewMessage, 3000);
+
+    setInterval(() => {
+        showNewMessage();
+    }, Math.random() * (20000 - 15000) + 15000);
+</script>
+
+<style>
+    div.fixed {
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

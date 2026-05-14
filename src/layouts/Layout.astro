@@ -3,6 +3,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import '@fontsource-variable/geist/wght.css';
 import "../styles/global.css";
+import WhatsappBtn from "../components/WhatsappBtn.astro";
 
 export interface Props {
   title?: string;
@@ -43,7 +44,7 @@ const jsonLd = {
   "@type": "RealEstateAgent",
   "name": siteName,
   "image": absoluteImage,
-  "telephone": "+51 908 942 105",
+  "telephone": "+51 986 342 948",
   "url": siteUrl,
   "address": {
     "@type": "PostalAddress",
@@ -96,6 +97,8 @@ const jsonLd = {
 </main>
 
 <Footer />
+
+<WhatsappBtn/>
 </body>
 </html>
 
