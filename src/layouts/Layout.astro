@@ -17,6 +17,7 @@ export interface Props {
   robots?: string;
   canonical?: string;
   gtmId?: string;
+  isThankYouPage?: boolean;
 }
 
 const {
@@ -31,10 +32,9 @@ const {
   robots = "index, follow",
   canonical,
   gtmId = "GTM-XXXXXXX",
+  isThankYouPage = false
 } = Astro.props;
 
-// Gestión de dominio no definido:
-// Si no hay dominio en astro.config.mjs, usamos una ruta relativa para evitar errores de compilación
 const siteUrl = Astro.site? new URL(url, Astro.site).href : url;
 const absoluteImage = Astro.site? new URL(image, Astro.site).href : image;
 const absoluteCanonical = canonical || siteUrl;
@@ -90,7 +90,7 @@ const jsonLd = {
 
 </head>
 <body class="antialiased scroll-smooth relative text-white min-h-screen flex flex-col overflow-x-hidden">
-<Header />
+<Header isThankYouPage={isThankYouPage} />
 
 <main class="flex-1">
   <slot />

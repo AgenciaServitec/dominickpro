@@ -4,11 +4,13 @@ import List from "phosphor-astro/List.astro";
 import X from "phosphor-astro/X.astro";
 
 import ContentWidth from "./ContentWidth.astro";
+
+const {isThankYouPage} = Astro.props;
 ---
 
 <header
     id="header"
-    class="w-full fixed top-0 left-0 z-50 transition-all duration-300 border-b border-transparent bg-transparent py-4"
+    class={`w-full fixed top-0 left-0 z-50 transition-all duration-300 border-b border-transparent ${isThankYouPage ? "bg-secondary-950" : "bg-transparent"} py-4`}
 >
   <ContentWidth>
     <div class="flex justify-between items-center h-16 md:h-20">
@@ -84,6 +86,10 @@ import ContentWidth from "./ContentWidth.astro";
 </dialog>
 
 <script>
+
+  const rutaActual = window.location.pathname;
+  const _isThankYouPage = rutaActual === "/gracias";
+
   const header = document.querySelector('#header') as HTMLElement;
   const dialog = document.querySelector('#mobile-menu') as HTMLDialogElement;
   const openBtn = document.querySelector('#open-menu');
@@ -95,8 +101,10 @@ import ContentWidth from "./ContentWidth.astro";
       header.classList.add('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
       header.classList.remove('border-transparent', 'bg-transparent');
     } else {
-      header.classList.remove('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
-      header.classList.add('border-transparent', 'bg-transparent');
+      if(!_isThankYouPage){
+        header.classList.remove('bg-secondary-950/95', 'backdrop-blur-md', 'border-secondary-800', 'shadow-2xl');
+        header.classList.add('border-transparent', 'bg-transparent');
+      }
     }
   });
 
