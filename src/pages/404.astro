@@ -1,0 +1,78 @@
+---
+import WarningCircle from "phosphor-astro/WarningCircle.astro";
+import House from "phosphor-astro/House.astro";
+import WhatsappLogo from "phosphor-astro/WhatsappLogo.astro";
+
+import Layout from "../layouts/Layout.astro";
+import ContentWidth from "../components/ContentWidth.astro";
+
+const URL = Astro.url.pathname;
+console.log("pathname", Astro.url.pathname)
+const isThankYouPage =  URL !== "/gracias";
+---
+
+<Layout
+        title="404 - Página no encontrada | DPI"
+        description="Lo sentimos, la página que buscas no existe o ha sido movida. - Dominick Pro Inmobiliaria"
+        image="/og-default.png"
+        type="website"
+        isThankYouPage={isThankYouPage}
+>
+    <ContentWidth>
+        <div class="relative min-h-[70vh] flex flex-col items-center justify-center w-full max-w-7xl mx-auto text-center pt-36 pb-28 overflow-hidden">
+            <div class="relative z-10 flex flex-col items-center animate-fade-in translate-y-4">
+
+                <div class="mb-6 relative select-none">
+                    <div class="absolute inset-0 bg-primary-500/10 blur-3xl rounded-full"></div>
+                    <span class="text-8xl md:text-9xl font-black text-primary-500 tracking-tight block">
+                        404
+                    </span>
+                </div>
+
+                <div class="mb-10 max-w-md px-4">
+                    <h2 class="text-secondary-950 text-2xl md:text-3xl font-bold mb-3 flex items-center justify-center gap-2">
+                        <WarningCircle class="w-7 h-7 md:w-8 md:h-8 text-primary-500 inline" />
+                        ¡Ups! Página no encontrada
+                    </h2>
+                    <p class="text-secondary-500 text-sm md:text-base">
+                        El lote o la sección que estás buscando no está disponible, cambió de dirección o nunca existió.
+                    </p>
+                </div>
+
+                <a href="/"
+                   class="flex items-center gap-3 text-center px-6 py-4 bg-primary-500 text-secondary-950 font-bold rounded-md uppercase text-sm shadow-md transition-all hover:bg-primary-600 group"
+                >
+                    <House class="w-5 h-5 transition-transform group-hover:-translate-y-0.5" />
+                    <span class="text-xs md:text-sm uppercase">Regresar al Inicio</span>
+                </a>
+
+                <div class="flex flex-col items-center mt-8">
+                    <a href="https://wa.me/51986342948?text=Hola,%20me%20apareci%C3%B3%20un%20error%20404%20en%20la%20web%20y%20necesito%20informaci%C3%B3n%20sobre%20los%20lotes."
+                       target="_blank"
+                       class="flex items-center gap-2 text-secondary-600 hover:text-secondary-950 font-bold text-[11px] md:text-xs transition-all group uppercase tracking-wider"
+                    >
+                        <WhatsappLogo class="w-4 h-4 text-green-600 transition-transform group-hover:scale-110" />
+                        ¿Necesitas ayuda? Contactar a un asesor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ContentWidth>
+</Layout>
+
+<style>
+    .animate-fade-in {
+        animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

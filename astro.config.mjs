@@ -6,6 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://proyecto-inmobiliario-dpi.com',
   integrations: [icon()],
   vite: {
     plugins: [tailwindcss()],
