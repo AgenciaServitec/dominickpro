@@ -23,7 +23,7 @@ export interface Props {
 const {
   title = "Dominick Pro Inmobiliaria | Lotes en Huaral y Alquileres en Lima",
   description = "Invierta en lotes en Huaral a 25 min del Megapuerto de Chancay. Seguridad jurídica 100% con títulos inscritos en SUNARP. +1600 lotes vendidos.",
-  image = "/images/og-dominick-pro.jpg",
+  image = "/og-default.png",
   url = Astro.url.href,
   type = "website",
   siteName = "Dominick Pro Inmobiliaria",
@@ -31,7 +31,7 @@ const {
   twitterSite = "@DominickPro",
   robots = "index, follow",
   canonical,
-  gtmId = "GTM-XXXXXXX",
+  gtmId = "GTM-M6GH3T2F",
   isThankYouPage = false
 } = Astro.props;
 
@@ -62,6 +62,17 @@ const jsonLd = {
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google Tag Manager -->
+  <script is:inline define:vars={{ gtmId }}>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer', gtmId);
+  </script>
+  <!-- End Google Tag Manager -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -90,6 +101,17 @@ const jsonLd = {
 
 </head>
 <body class="antialiased scroll-smooth relative text-white min-h-screen flex flex-col overflow-x-hidden">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+  ></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <Header isThankYouPage={isThankYouPage} />
 
 <main class="flex-1">
