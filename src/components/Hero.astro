@@ -137,16 +137,12 @@ import ContentWidth from "./ContentWidth.astro";
         phone: {
           prefix: "+51",
           number: formData.get('whatsapp'),
-        },
-        document: {
-          type: "DNI",
-          number: "00000000",
-        },
+        }
       },
     };
 
     try {
-      const response = await fetch("https://api-servitec-peru.web.app/entries", {
+      const response = await fetch("https://api-servitec-peru.web.app/entries/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
